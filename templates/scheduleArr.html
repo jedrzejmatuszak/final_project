@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr><th>Rozkład</th><th>Numer rejsu</th><th>Kierunek</th><th></th></tr>
+    {% for flight in schedule %}
+        <tr><td>{{ flight.sibt }}</td><td>{{ flight.career }} {{ flight.arr_flight_number }}</td><td>{{ flight.origin }}</td></tr>
+    {% endfor %}
+    </table>
+    <a href="/arrscr">Dodaj rejs</a>
+</body>
+</html>

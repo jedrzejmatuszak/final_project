@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from app.views import TestView, GenerateArrSCR, ScheduleArrView
+from cashmanage.views import StartPage, ListAccountView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', TestView.as_view()),
+    path('arrscr', GenerateArrSCR.as_view()),
+    path('schedule', ScheduleArrView.as_view()),
+    path('main', StartPage.as_view()),
+    path('accounts', ListAccountView.as_view()),
 ]

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
     'django_extensions',
+    'virtualuniversity',
+    'cashmanage',
 ]
 
 MIDDLEWARE = [

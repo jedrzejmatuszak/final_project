@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Lista Kont{% endblock %}
+{% block content %}
+    <h2>Konta:</h2>
+    <ul>
+        {% for account in accounts %}
+            <li>{{ account.name }} --- {{ account.cash_amount }} PLN</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
