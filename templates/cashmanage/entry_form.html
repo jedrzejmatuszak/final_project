@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Dodawanie nowego wpisu</h2>
+    <form action="#" method="post" id="entryForm" data-subcat-url="{% url 'ajax_load_subcat' %}">
+    {% csrf_token %}
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            {% for radio in form.options %}
+                  <label class="btn btn-secondary">
+                    {{ radio }}
+                  </label>
+            {% endfor %}
+        </div>
+        <table>
+            <tr>
+                <th>
+                    {{ form.account.label }}
+                </th>
+                <td>
+                    {{ form.account }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {{ form.category.label }}
+                </th>
+                <td>
+                    {{ form.category }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {{ form.subcategory.label }}
+                </th>
+                <td>
+                    {{ form.subcategory }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {{ form.amount.label }}
+                </th>
+                <td>
+                    {{ form.amount }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {{ form.description.label }}
+                </th>
+                <td>
+                    {{ form.description }}
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-primary">Dodaj wpis</button>
+    </form>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script>
+    $('#id_category').change(function(){
+        var url = $('#entryForm').attr("data-subcat-url");
+        var category = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'category': category
+            }
+
+        }).done(function (data) {
+            $('#id_subcategory').html(data)
+        })
+    });
+    </script>
+{% endblock %}

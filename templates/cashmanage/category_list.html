@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div align="left"><h1>Kategrie</h1></div>
+    <div align="right"><a href="/add-category" class="btn btn-primary">Dodaj kategorię</a></div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nazwa</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for category in object_list %}
+    <tr>
+      <td>{{ category.name }}</td>
+      <td align="right">
+          <a href="/categories/{{ category.id }}" class="btn btn-warning" data-id="{{ value2.id }}">Edytuj</a>
+          <a href="/categories/delete/{{ category.id }}" class="btn btn-danger" data-id="{{ value2.id }}">Usuń</a>
+      </td>
+    </tr>
+
+    {% empty %}
+    <h1>Brak kategorii</h1>
+  {% endfor %}
+   </tbody>
+</table>
+{% endblock %}

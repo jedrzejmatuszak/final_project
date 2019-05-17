@@ -10,14 +10,14 @@
         <header class="page-header">
             <nav class="navbar navbar-expand-lg justify-content-between">
                 <a href="/" class="navbar-brand main-logo main-logo-smaller">
-                    DUPA BLADA
+                    POWIEDZMY ŻE MONEY MANAGER
                 </a>
                 <ul class="nav nounderline text-uppercase">
                     <li class="nav-item ml-4">
                         <a class="nav-link" href="/about">o aplikacji</a>
                     </li>
                     <li class="nav-item ml-4">
-                        <a class="nav-link disabled" href="/contact">Kontakt</a>
+                        <a class="nav-link" href="/contact">Kontakt</a>
                     </li>
                 </ul>
             </nav>
@@ -25,51 +25,47 @@
         <section>
              <div class="row">
                  <div class="col-3">
-                    <nav class="nav flex-column item-dropdown">
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/balance" role="button" aria-haspopup="true" aria-expanded="false">Wpisy</a>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="/balance">Wyświetl wszystkie</a>
-                          <a class="dropdown-item" href="/addBalance">Dodaj wpis</a>
-                        </div>
-                      <a class="nav-link" href="#">Statystyki</a>
-                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/accounts" role="button" aria-haspopup="true" aria-expanded="false">Konta</a>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="/accounts">Wyświetl</a>
-                          <a class="dropdown-item" href="/addAccount">Dodaj konto</a>
-                          <a class="dropdown-item" href="/deleteAccount">Usuń konto</a>
-                        </div>
-                      <a class="nav-link" href="#">Ustawienia</a>
+                     <ul class="nav flex-column">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="/">Wpisy</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/stats">Statystyki</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/accounts">Konta</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/categories">Kategorie</a>
+                          </li>
+                      </ul>
+                      <div>
+                        <ul>
+                          {% for account_cp in accounts_cp %}
+                              <li>Konto: {{ account_cp.name }}</li>
+                              <li>Saldo: {{ account_cp.cash_amount }} PLN</li>
+                              Ostatnie operacje:
+                              <ol>
+                                {% for entry_cp in entries_cp %}
+                                    {% if account_cp.id == entry_cp.account.id %}
+                                        <li>{{ entry_cp.date }} -- {{ entry_cp.amount }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                              </ol>
+                          {% endfor %}
+                        </ul>
+                      </div>
                     </nav>
                 </div>
                 <div class="col-9">
                     {% block content %}
                     {% endblock %}
                 </div>
-{#                <div class="col-9">#}
-{#                    <div class="tab-content" id="v-pills-tabContent">#}
-{#                      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">#}
-{#                          {% block balance %}#}
-{#                          {% endblock %}#}
-{#                      </div>#}
-{#                      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">#}
-{#                          {% block statistics %}#}
-{#                          {% endblock %}#}
-{#                      </div>#}
-{#                      <div class="tab-pane fade" id="v-pills-accounts" role="tabpanel" aria-labelledby="v-pills-accounts-tab">#}
-{#                          {% block accounts %}#}
-{#                          {% endblock %}#}
-{#                      </div>#}
-{#                      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">#}
-{#                          {% block settings %}#}
-{#                          {% endblock %}#}
-{#                      </div>#}
-{#                    </div>#}
-{#                </div>#}
              </div>
         </section>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+{#    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"#}
+{#        crossorigin="anonymous"></script>#}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"

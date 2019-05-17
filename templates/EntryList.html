@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>test</h1>
+    {% for entry in entries %}
+        {{ entry }}
+    {% endfor %}
+    <a href="/add-entry" type="button" class="btn btn-primary">Dodaj wpis</a>
+{% endblock %}

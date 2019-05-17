@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load poll_extras %}
+    <div>
+        <div>
+            <canvas id="myChart"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+            <script>
+            var ctx = document.getElementById('myChart');
+            var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'doughnut',
+
+            // The data for our dataset
+            data: {
+                labels: [
+                    {% for label in labels %}
+                        '{{ label }}',
+                    {% endfor %}
+                ],
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(0, 51, 0, 0.2)',
+                        'rgba(153, 255, 153, 0.2)',
+                        'rgba(0, 0, 153, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(0, 51, 0, 1)',
+                        'rgba(153, 255, 153, 1)',
+                        'rgba(0, 0, 153, 2)',
+                    ],
+                    data: {{ data }}
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+            });
+            </script>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategoria</th>
+                        <th>Suma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in ctx.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

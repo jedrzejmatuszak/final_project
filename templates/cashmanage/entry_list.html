@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <div align="left"><h2>Wpisy</h2></div>
+        <div align="right"><a href="/add-entry" class="btn btn-primary">Dodaj wpis</a></div>
+    </div>
+        {% for key, value in entries.items %}
+           <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">{{ key }}</th>
+                  <th scope="col">Konto</th>
+                  <th scope="col">cos tam pos</th>
+                  <th scope="col">cos tam neg</th>
+                </tr>
+              </thead>
+            {% for value2 in value %}
+              <tbody>
+                <tr>
+                    <td class="category" data-id="{{ value2.id }}">{{ value2.category }}</td>
+                    <td></td>
+                    <td class="amount">{{ value2.amount }}</td>
+                    <td align="right">
+                        <a href="/entry/{{ value2.id }}" class="btn btn-warning" data-id="{{ value2.id }}">Edytuj</a>
+                        <a href="/entry/delete/{{ value2.id }}" class="btn btn-danger" data-id="{{ value2.id }}">Usuń</a>
+                    </td>
+                </tr>
+              </tbody>
+            {% endfor %}
+            </table>
+        {% endfor %}
+{#    <script#}
+{#    src="https://code.jquery.com/jquery-3.4.1.js"#}
+{#    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="#}
+{#    crossorigin="anonymous"></script>#}
+{#    <script>#}
+{#    $(function(){#}
+{#        console.log($('.category').val());#}
+{#        if (parseFloat($('amonut').innerText) > 0) {#}
+{#            $('.amount').css({'color': 'green'})#}
+{#        }else{#}
+{#            $('.amount').css({'color': 'red'})#}
+{#        };#}
+{#    });#}
+{#    </script>#}
+{% endblock %}

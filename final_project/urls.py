@@ -16,13 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from app.views import TestView, GenerateArrSCR, ScheduleArrView
-from cashmanage.views import StartPage, ListAccountView
+from cashmanage.views import StartPage, ListAccountView, ListEntryView, CreateEntryView, \
+    UpdateEntryView, load_subcategories, StatsView, CategoryListView, DeleteEntryView, \
+    AddAccountView, EditAccountView, DeleteAccountView, CategoryAddView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', TestView.as_view()),
     path('arrscr', GenerateArrSCR.as_view()),
     path('schedule', ScheduleArrView.as_view()),
-    path('main', StartPage.as_view()),
-    path('accounts', ListAccountView.as_view()),
+    ############################################
+    path('', ListEntryView.as_view(), name='entry_list'),
+    path('accounts', ListAccountView.as_view(), name='all_accounts'),
+    path('add-account', AddAccountView.as_view(), name='add_account'),
+    path('account/<int:pk>', EditAccountView.as_view(), name='edit_account'),
+    path('account/delete/<int:pk>', DeleteAccountView.as_view(), name='delete_account'),
+    path('entry/<int:pk>', UpdateEntryView.as_view(), name='entry_change'),
+    path('add-entry', CreateEntryView.as_view(), name='entry_add'),
+    path('entry/delete/<int:pk>', DeleteEntryView.as_view(), name='delete_entry'),
+    path('ajax/load-subcat', load_subcategories, name='ajax_load_subcat'),
+    path('stats', StatsView.as_view(), name='stats_view'),
+    path('categories', CategoryListView.as_view(), name='category_list'),
+    path('add-category', CategoryAddView.as_view(), name='add_category'),
 ]

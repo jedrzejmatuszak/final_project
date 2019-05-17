@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'virtualuniversity',
     'cashmanage',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cashmanage.my_context_processor.my_cp',
             ],
         },
     },

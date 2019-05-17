@@ -1,10 +1,31 @@
 {% extends 'base.html' %}
 {% block title %}Lista Kont{% endblock %}
 {% block content %}
-    <h2>Konta:</h2>
-    <ul>
-        {% for account in accounts %}
-            <li>{{ account.name }} --- {{ account.cash_amount }} PLN</li>
-        {% endfor %}
-    </ul>
+    <div>
+        <div align="left"><h2>Konta</h2></div>
+        <div align="right"><a href="/add-account" class="btn btn-primary">Dodaj konto</a></div>
+    </div>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nazwa</th>
+          <th scope="col">Saldo</th>
+          <th scope="col" align="right">Akcja</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for account in accounts %}
+        <tr>
+          <th scope="row">{{ account.id }}</th>
+          <td>{{ account.name }}</td>
+          <td>{{ account.cash_amount }}</td>
+          <td align="right">
+              <a href="account/{{ account.id }}" class="btn btn-warning">Edytuj</a>
+              <a href="account/delete/{{ account.id }}" class="btn btn-danger">Usuń</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
 {% endblock %}
