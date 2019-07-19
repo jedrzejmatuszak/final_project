@@ -181,3 +181,8 @@ class CategoryAddView(CreateView):
     model = Category
     form_class = AddCategoryForm
     success_url = reverse_lazy('category_list')
+
+
+class DeleteCategoryView(DeleteView):
+    model = Category
+    success_url = reverse_lazy('category_list')

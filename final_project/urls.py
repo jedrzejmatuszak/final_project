@@ -18,7 +18,7 @@ from django.urls import path, re_path
 from app.views import TestView, GenerateArrSCR, ScheduleArrView
 from cashmanage.views import StartPage, ListAccountView, ListEntryView, CreateEntryView, \
     UpdateEntryView, load_subcategories, StatsView, CategoryListView, DeleteEntryView, \
-    AddAccountView, EditAccountView, DeleteAccountView, CategoryAddView
+    AddAccountView, EditAccountView, DeleteAccountView, CategoryAddView, DeleteCategoryView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,4 +38,5 @@ urlpatterns = [
     path('stats', StatsView.as_view(), name='stats_view'),
     path('categories', CategoryListView.as_view(), name='category_list'),
     path('add-category', CategoryAddView.as_view(), name='add_category'),
+    path('categories/delete/<int:pk>', DeleteCategoryView.as_view(), name='delete_category'),
 ]

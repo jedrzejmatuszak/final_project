@@ -10,15 +10,15 @@
                 <tr>
                   <th scope="col">{{ key }}</th>
                   <th scope="col">Konto</th>
-                  <th scope="col">cos tam pos</th>
-                  <th scope="col">cos tam neg</th>
+                  <th scope="col">Wartość</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
             {% for value2 in value %}
               <tbody>
                 <tr>
                     <td class="category" data-id="{{ value2.id }}">{{ value2.category }}</td>
-                    <td></td>
+                    <td>{{ value2.account.name }}</td>
                     <td class="amount">{{ value2.amount }}</td>
                     <td align="right">
                         <a href="/entry/{{ value2.id }}" class="btn btn-warning" data-id="{{ value2.id }}">Edytuj</a>

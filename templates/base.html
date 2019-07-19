@@ -44,14 +44,13 @@
                           {% for account_cp in accounts_cp %}
                               <li>Konto: {{ account_cp.name }}</li>
                               <li>Saldo: {{ account_cp.cash_amount }} PLN</li>
-                              Ostatnie operacje:
-                              <ol>
-                                {% for entry_cp in entries_cp %}
-                                    {% if account_cp.id == entry_cp.account.id %}
-                                        <li>{{ entry_cp.date }} -- {{ entry_cp.amount }}</li>
-                                    {% endif %}
-                                {% endfor %}
-                              </ol>
+                              Ostatnia operacja:
+                              <p>{{ account_cp.entry_set.all.last.date }} --- {{ account_cp.entry_set.all.last.amount }}</p>
+{#                                {% for entry_cp in entries_cp %}#}
+{#                                    {% if account_cp.id == entry_cp.account.id %}#}
+{#                                        <li>{{ entry_cp.date }} -- {{ entry_cp.amount }}</li>#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
                           {% endfor %}
                         </ul>
                       </div>
